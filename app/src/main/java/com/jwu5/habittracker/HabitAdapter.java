@@ -45,7 +45,7 @@ public class HabitAdapter extends ArrayAdapter<Habit> {
         }
         sdf = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss", Locale.CANADA);
         sdf.setTimeZone(TimeZone.getTimeZone("US/Mountain"));
-        String[] dayOfWeekArray = {"", "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
+        String[] dayOfWeekArray = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
 
         //Initialize all textviews and buttons
         TextView habitTitle = (TextView) convertView.findViewById(R.id.habit_item_title);
@@ -58,6 +58,7 @@ public class HabitAdapter extends ArrayAdapter<Habit> {
 
         //Sets the text according to habit properties
         habitTitle.setText("Habit: " + habit.getHabitTitle());
+        habitTitle.setTextColor(Color.parseColor("#FFFFFF"));
         habitDescription.setText("Description: " + habit.getHabitDescription());
         habitDate.setText("Date: "+ sdf.format(habit.getCompletionDate().getTime()));
         habitCompletions.setText("Total Completions: " + habit.getCompletionAmountTotal());
@@ -66,7 +67,7 @@ public class HabitAdapter extends ArrayAdapter<Habit> {
         String repeatDaysString = "";
         for(int repeatDays : habit.getRepeatDays().keySet()) {
             if (habit.getRepeatDays().get(repeatDays)) {
-                repeatDaysString += dayOfWeekArray[repeatDays] + " ";
+                repeatDaysString += dayOfWeekArray[repeatDays-1] + " ";
             }
         }
         habitRepeatDate.setText("Repeats :" + repeatDaysString);
@@ -92,9 +93,10 @@ public class HabitAdapter extends ArrayAdapter<Habit> {
                 else {
                     habitTitle.setTextColor(Color.parseColor("#FFFFFF"));
                 }
-                notifyDataSetChanged();
             }
+
         }
+        notifyDataSetChanged();
         return convertView;
     }
 
