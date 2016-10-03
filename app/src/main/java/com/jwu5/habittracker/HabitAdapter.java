@@ -16,7 +16,6 @@ import org.w3c.dom.Text;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -30,9 +29,11 @@ public class HabitAdapter extends ArrayAdapter<Habit> {
 
     private SimpleDateFormat sdf;
     private SimpleDateFormat sdfRepeatDays;
+    private Context mContext;
 
     public HabitAdapter(Context context, ArrayList<Habit> habitArraylist) {
         super(context, 0, habitArraylist);
+        this.mContext = context;
     }
 
     @Override
@@ -77,6 +78,8 @@ public class HabitAdapter extends ArrayAdapter<Habit> {
             @Override
             public void onClick(View v) {
                 habit.completeHabit(sdf);
+                MainActivity activity = (MainActivity) mContext;
+                activity.saveInFile();
                 notifyDataSetChanged();
             }
         });

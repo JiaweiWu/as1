@@ -62,16 +62,21 @@ public class Habit implements Serializable{
     }
 
     public HashMap<Integer, Boolean> getRepeatDays() {
-        return this.repeatDays;
+        return repeatDays;
     }
 
     public Calendar getLastCompletionDate() {
-        return this.lastCompletionDate;
+        return lastCompletionDate;
     }
 
     public ArrayList<String> getCompletionLog() {
         return completionLog;
     }
+
+    public String getCompletingString() {
+        return completingString;
+    }
+
 
     public void setCompletionDate(Calendar completionDate) {
         this.completionDate = completionDate;
@@ -103,7 +108,7 @@ public class Habit implements Serializable{
     }
 
     public void updateCompletionCount() {
-        completionAmountTotal = completionLog.size();
+        this.completionAmountTotal = completionLog.size();
     }
 
     public LinkedHashMap<String, Calendar> getCompletionLogAll() {
@@ -113,12 +118,8 @@ public class Habit implements Serializable{
     public void removeCompletionLogEntry(int pos) {
         completionLogAll.remove(completionLog.get(pos));
         completionLog.remove(pos);
+        updateCompletionCount();
     }
-
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-
 
     public void setCompletionLogAll(LinkedHashMap<String, Calendar> completionLogAll) {
         this.completionLogAll = completionLogAll;
@@ -130,10 +131,6 @@ public class Habit implements Serializable{
 
     public void setLastCompletionDate(Calendar lastCompletionDate) {
         this.lastCompletionDate = lastCompletionDate;
-    }
-
-    public String getCompletingString() {
-        return completingString;
     }
 
     public void setCompletingString(String completingString) {

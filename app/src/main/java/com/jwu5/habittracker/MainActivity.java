@@ -41,7 +41,7 @@ public class MainActivity extends Activity  {
     private static final int REQUEST_USER_INPUT_NEW = 0 ;
     private static final int REQUEST_USER_INPUT_EDIT = 1;
     private static final int REQUEST_COMPLETION_INPUT_EDIT = 2;
-    private HabitList habitList;
+    protected HabitList habitList;
     private ListView habitListView;
     private HabitAdapter habitListAdapter;
     private Spinner spinner;
@@ -56,31 +56,6 @@ public class MainActivity extends Activity  {
         //Initialize buttons
         mAddHabit = (Button) findViewById(R.id.add_habit);
         habitListView = (ListView) findViewById(R.id.habitList);
-
-        //Spinner to pick the view that the user desires(Today or all habits): http://stackoverflow.com/questions/13377361/how-to-create-a-drop-down-list
-        spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.spinner, android.R.layout.simple_spinner_item);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(spinnerAdapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                if (position == 0) {
-                    habitList.setEVERY_DAY(true);
-                }
-                else {
-                    habitList.setEVERY_DAY(false);
-                }
-                habitList.setDAY_OF_WEEK(date);
-                refreshViewAndSave();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-
 
         //Set click event listen for add habit button to launch a new activity where the user can add new habits
         mAddHabit.setOnClickListener(new View.OnClickListener() {
@@ -125,6 +100,30 @@ public class MainActivity extends Activity  {
                         }).create().show();
                 refreshViewAndSave();
                 return true;
+            }
+        });
+
+        //Spinner to pick the view that the user desires(Today or all habits): http://stackoverflow.com/questions/13377361/how-to-create-a-drop-down-list
+        spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.spinner, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                if (position == 0) {
+                    habitList.setEVERY_DAY(true);
+                }
+                else {
+                    habitList.setEVERY_DAY(false);
+                }
+                habitList.setDAY_OF_WEEK(date);
+                refreshViewAndSave();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
     }
@@ -192,13 +191,11 @@ public class MainActivity extends Activity  {
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
         }
     }
 
     //Taken from LonelyTwitter, saves arraylist as Gson
-    private void saveInFile() {
+    protected void saveInFile() {
         try {
             FileOutputStream fos = openFileOutput(FILENAME,
                     0);
