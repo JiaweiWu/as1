@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">jwu5-HabitTracker</string>
+    <string name="add_habit_title">Add Habit</string>
+    <string name="add_habit_date">Edit Date</string>
+    <string name="all_habit_title">All Habits</string>
+    <string name="habit_title_hint">Enter Habit Name</string>
+    <string name="date_entered">None</string>
+    <string name="title_activity_habit">Edit/Create Habit</string>
+    <string name="add_habit_description">Add Habit Description</string>
+    <string name="habit_description_hint">Enter Habit Description</string>
+    <string name="toggle_sun">Sun</string>
+    <string name="toggle_mon">Mon</string>
+    <string name="toggle_sun_text">Sun</string>
+    <string name="toggle_mon_text">Mon</string>
+    <string name="toggle_tue_text">Tue</string>
+    <string name="toggle_wed_text">Wed</string>
+    <string name="toggle_thu_text">Thu</string>
+    <string name="toggle_fri_text">Fri</string>
+    <string name="toggle_sat_text">Sat</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <string name="no">No</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="habit_date_hint">Enter Habit Date</string>
+    <string name="habit_list_title">Habit: </string>
+    <string name="habit_list_Description">Description: </string>
+    <string name="habit_list_date">Date: </string>
+    <string name="habit_list_completion">Total Completions: </string>
+    <string name="complete">Complete Habit</string>
+    <string name="view_completion">Completion Log</string>
+    <string name="complete_today_note">* - If Habit title is this color, it has been completed today</string>
+    <string name="yes">Yes</string>
+    <string name="habit_list_repeat">Repeats:</string>
+
+    <string-array name="spinner">
+        <item>All Habits</item>
+        <item>Today\'s Habits</item>
+    </string-array>
+</resources>
